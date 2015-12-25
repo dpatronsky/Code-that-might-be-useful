@@ -1,0 +1,25 @@
+def function(x): #can be whatever function you choose in one variable as long as it intersects zero
+	return 40*x**1.5-875*x+35000
+def bisection(accuracy, a, b, stop_condition):
+	x = a
+	y = b
+	if stop_condition[0].lower() == "i":
+		for n in range(accuracy):
+			z = (float(x) + float(y))/2
+			if function(z) < 0:
+				x = z
+			else:
+				y = z
+		return [x, y]
+	elif stop_condition[0].lower() == 's':
+		i = 1
+		while y - x > accuracy:
+			i += 1
+			z = (float(x) + float(y))/2
+			if function(z) < 0:
+				x = z
+			else:
+				y = z
+		return [x, y, i]
+	else:
+		return "Please enter a valid stopping condition, either 'itterations' or 'small'"
